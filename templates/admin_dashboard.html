@@ -1,0 +1,79 @@
+{% extends "baseA.html" %}
+
+{% block title %}
+Admin Dashboard
+{% endblock %}
+
+{% block content %}
+
+<h2>Admin Dashboard</h2>
+
+<div class="stats-container">
+
+    <div class="stat-card task-card">
+        <h3>Total Tasks</h3>
+        <h1>{{task_count}}</h1>
+    </div>
+
+    <div class="stat-card employee-card">
+        <h3>Total Employees</h3>
+        <h1>{{employee_count}}</h1>
+    </div>
+
+</div>
+
+<h3>Employees List</h3>
+<table>
+<tr>
+<th>ID</th>
+<th>Name</th>
+</tr>
+
+{% for e in employees %}
+<tr>
+<td>{{e[0]}}</td>
+<td>{{e[1]}}</td>
+</tr>
+{% endfor %}
+
+</table>
+
+
+
+
+<h3>Assigned Tasks</h3>
+<table>
+<tr>
+<th>Employee</th>
+<th>Task</th>
+<th>Status</th>
+<th>Progress</th>
+</tr>
+
+{% for a in assigned_tasks %}
+<tr>
+<td>{{a[0]}}</td>
+<td>{{a[1]}}</td>
+<td>
+
+{% if a[2] == 'completed' %}
+<span style="color:green;">✔ Completed</span>
+
+{% elif a[2] == 'in_progress' %}
+<span style="color:orange;">● In Progress</span>
+
+{% else %}
+<span style="color:red;">⏳ Pending</span>
+
+{% endif %}
+
+</td>
+
+<td>{{a[3]}}%</td>
+
+</tr>
+{% endfor %}
+
+</table>
+
+{% endblock %}
