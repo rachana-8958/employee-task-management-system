@@ -1,4 +1,4 @@
-1. Project Overview
+<img width="1827" height="880" alt="Screenshot 2026-03-29 173649" src="https://github.com/user-attachments/assets/9954e301-b870-4708-b7d3-d4ef90d4122d" />1. Project Overview
 
 The Employee Task Management System (ETMS) is a web-based application developed to streamline task allocation and monitoring within an organization. It allows administrators to assign tasks to employees, track their progress, and manage deadlines efficiently, while employees can view, update, and complete their assigned tasks.
 
