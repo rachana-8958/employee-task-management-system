@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}{% endblock %}</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/emp.css') }}">
+
+<style>
+.notification-badge{
+background:red;
+color:white;
+padding:2px 6px;
+border-radius:50%;
+font-size:12px;
+margin-left:5px;
+}
+
+.popup{
+position:fixed;
+top:20px;
+right:20px;
+background:white;
+padding:15px;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,0.2);
+display:none;
+z-index:1000;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="employee-wrapper">
+
+<!-- Sidebar -->
+<div class="sidebar">
+    <h2>Employee</h2>
+
+    <a href="/employee">🏠 Dashboard</a>
+    <a href="/my_tasks">📋 My Tasks</a>
+    <a href="/profile">⚙️ Profile</a>
+    <a href="/logout">🚪 Logout</a>
+
+    <!-- 🔔 Notification -->
+    <a href="/notifications">
+        🔔 Notifications
+        {% if notifications %}
+        <span class="notification-badge">
+        {{notifications|length}}
+        </span>
+        {% endif %}
+    </a>
+
+</div>
+
+
+<!-- Popup -->
+<div class="popup" id="popup">
+<h4>🔔 Notifications</h4>
+
+{% if notifications %}
+    {% for n in notifications %}
+        <p>{{n}}</p>
+    {% endfor %}
+{% else %}
+<p>No new notifications</p>
+{% endif %}
+
+</div>
+
+
+<!-- Main -->
+<div class="main">
+
+{% block content %}
+
+{% endblock %}
+
+</div>
+
+</div>
+
+
+<script>
+
+window.onload = function(){
+let popup = document.getElementById("popup");
+
+{% if notifications %}
+popup.style.display = "block";
+
+setTimeout(()=>{
+popup.style.display="none"
+},5000);
+
+{% endif %}
+
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}{% endblock %}</title>
+
+    <link rel="stylesheet" 
+    href="{{ url_for('static', filename='css/base.css') }}">
+
+</head>
+<body>
+
+<div class="dashboard-wrapper">
+
+<div class="sidebar">
+    <h2>Admin</h2>
+    <a href="/admin">Dashboard</a>
+    <a href="/add_task">Tasks</a>
+    <a href="/assign_task">Assign Task</a>
+    <a href="/logout">Logout</a>
+</div>
+
+<div class="main">
+
+{% block content %}
+{% endblock %}
+
+</div>
+
+</div>
+
+</body>
+
+</html>

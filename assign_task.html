@@ -1,0 +1,101 @@
+{% extends "baseA.html" %}
+
+{% block title %}
+Assign Task
+{% endblock %}
+
+{% block content %}
+
+<div class="page-container">
+
+<h2>Assign Task</h2>
+
+<!-- ASSIGN FORM -->
+<div class="form-section">
+
+<form method="POST">
+
+<select name="emp_id" required>
+<option value="">Select Employee</option>
+
+{% for e in employees %}
+<option value="{{e[0]}}">
+{{e[0]}} - {{e[1]}}
+</option>
+{% endfor %}
+
+</select>
+
+
+<select name="task_id" required>
+<option value="">Select Task</option>
+
+{% for t in tasks %}
+<option value="{{t[0]}}">
+{{t[0]}} - {{t[1]}}
+</option>
+{% endfor %}
+
+</select>
+
+<button type="submit">Assign Task</button>
+
+</form>
+
+</div>
+
+
+<!-- ASSIGNED TABLE -->
+
+<h3>Assigned Tasks</h3>
+
+<table>
+
+<tr>
+<th>Employee</th>
+<th>Task</th>
+<th>Status</th>
+<th>Progress</th>
+<th>Action</th>
+</tr>
+
+{% for a in assigned %}
+<tr>
+
+<td>{{a[1]}}</td>
+<td>{{a[2]}}</td>
+
+<td>
+
+{% if a[3] == 'completed' %}
+<span class="status-complete">✔ Completed</span>
+
+{% elif a[3] == 'in_progress' %}
+<span class="status-progress">● In Progress</span>
+
+{% else %}
+<span class="status-pending">⏳ Pending</span>
+
+{% endif %}
+
+</td>
+
+<td>{{a[4]}}%</td>
+
+<td>
+<a href="/delete_assignment/{{a[0]}}"
+onclick="return confirm('Delete this assignment?')">
+
+<button class="delete-btn">Delete</button>
+
+</a>
+</td>
+
+</tr>
+{% endfor %}
+
+</table>
+
+</div>
+
+{% endblock %}

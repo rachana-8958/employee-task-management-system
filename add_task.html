@@ -1,0 +1,52 @@
+{% extends "baseA.html" %}
+
+{% block title %}
+Add Task
+{% endblock %}
+
+{% block content %}
+
+<h2>Add Task</h2>
+
+<form method="POST">
+    <input name="name" placeholder="Task Name">
+    <input name="desc" placeholder="Description">
+    <input type="date" name="deadline">
+    <button>Add</button>
+</form>
+
+<hr>
+
+<div style="margin-top:20px;">
+    <h3>All Tasks</h3>
+
+    <table style="width:100%; border-collapse: collapse;">
+        <tr style="background:#007bff; color:white;">
+            <th>ID</th>
+            <th>Task</th>
+            <th>Description</th>
+            <th>Deadline</th>
+            <th>Action</th>
+        </tr>
+
+        {% for t in tasks %}
+        <tr>
+            <td>{{t[0]}}</td>
+            <td>{{t[1]}}</td>
+            <td>{{t[2]}}</td>
+            <td>{{t[3]}}</td>
+
+            <td>
+                <a href="/delete_task/{{t[0]}}"
+                   onclick="return confirm('Delete this task?')">
+                    <button style="background:red; color:white; border:none; padding:5px 10px;">
+                        Delete
+                    </button>
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+{% endblock %}
